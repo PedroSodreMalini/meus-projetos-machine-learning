@@ -4,15 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-scikit-learn = "*"
-seaborn = "*"
-pandas = "*"
 nbformat = "*"
-matplotlib = "*"
-shap = "*"
 plotly = "*"
-ppscore = "*"
 setuptools = "*"
+pandas = "*"
+seaborn = "*"
+matplotlib = "*"
+scikit-learn = "*"
+ppscore = "*"
+shap = "*"
 
 [dev-packages]
 
