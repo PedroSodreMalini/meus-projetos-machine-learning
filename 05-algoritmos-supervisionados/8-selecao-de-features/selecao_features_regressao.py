@@ -1,10 +1,8 @@
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.linear_model import LinearRegression
 from sklearn.feature_selection import RFE, RFECV, SelectFromModel
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import root_mean_squared_error, f1_score
+from sklearn.metrics import root_mean_squared_error
 
 # 1: Carregar dataset de colesterol
 df_colesterol = pd.read_csv("./dataset/colesterol.csv")
