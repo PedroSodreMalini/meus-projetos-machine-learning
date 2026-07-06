@@ -38,7 +38,43 @@ O dataset contém 600 registros, cada um representando uma espécie fictícia. O
 
 ### Colunas inúteis
 
-1. *species_id* = representa o id. Não faz sentido agrupar pelo id.
+1. _species_id_ = representa o id. Não faz sentido agrupar pelo id.
+
+### Distribuição de Número de Olhos
+
+![Eye_Count_Distribution](./dataviz/eye-count-distribution.png)
+
+70% dos dados tem 2 olhos, 10% tem 1 olho e 20% tem 4 olhos. Isso é um bom indicador que é possível clusterizar os dados de alguma forma com esse desbalanceio.
+
+### Distribuição de Peso
+
+![Weight_Distribution](./dataviz/weight-distribution.png)
+
+O peso segue uma distribuição bem próxima de uma distribuição normal.
+
+### Distribuição de Tamanho da Cauda (cm)
+
+![Tail_Length_Distribution](./dataviz/tail-length-distribution.png)
+
+O tamanho da cauda segue uma distribuição bem próxima de uma distribuição normal.
+
+### Distribuição de Presença de Asas
+
+![Has_Wings_Distribution](./dataviz/has-wings-distribution.png)
+
+A maioria das espécies não tem asas, o que pode ser um bom sinal de clusters para aves/insetos voadores.
+
+### Heatmap Pesença de Asas x Número de Olhos
+
+![N_Eyes_x_Wings_Heatmap](./dataviz/n-eyes-wings-heatmap.png)
+
+Quase metade dos dados(299/300) tem 2 olhos e não tem asas. O resto está dividido nas outras 5 seções possíveis.
+
+### Tempo de Vida Médio (anos) x Massa Corporal (kg)
+
+![Lifetime_x_Mass_Scatter](./dataviz/mass-lifetime-scatter.png)
+
+Não há uma relação clara entre tempo de vida médio e massa corporal. Inclusive, a presença de asa também não aparenta influenciar essa relação.
 
 ## Análise dos dados agrupados pelo modelo
 
@@ -48,34 +84,32 @@ Após tuning de hiperparâmetros com Optuna, escolheu-se o modelo aglomerativo, 
 
 | Método de Clusterização Hierárquica | Silhouette Score | Clusters |
 | :---------------------------------: | :--------------: | :------: |
-|            Aglomerativo             |     ≃ 0.3275     |   149    |
-|              Divisivo               |     ≃ 0.2216     |   141    |
+|            Aglomerativo             |     ≃ 0.1457     |   193    |
+|              Divisivo               |     ≃ 0.0877     |    10    |
 
-### Dendograma com 15 clusters
+### Dendograma com todos clusters do melhor modelo
 
-![Dendrogram](./dataviz/dendrogram-15-clusters.png)
+![Dendrogram](./dataviz/dendrogram-10-leafs.png)
 
-Apesar dos 15 clusters, é possível enxergar que o grupo é dividido em 3 grandes grupos na prática.
+Considerando que há 600 espécies, esse agrupament não é interessante, pois há muitos clusters para uma amostra baixa.
 
 ### Distribuição dos clusters
 
 ![Cluster Distribution](./dataviz/cluster-distribution.png)
 
-Nos 150 clusters, o maior cluster representa somente 2% da amostra. Isso revela que talvez seja fácil encontrar computadores parecidos para muitos produtos. Contudo, se esses fossem os clusters levados em consideração, com certeza seria difícil criar um modelo de classificação preciso, já que existem muitos clusters. Para isso ser possível, seria necessário um maior volume de dados.
+Nos 150 clusters, o maior cluster representa somente 1.5% da amostra. Isso não é um agrupamento efetivo, já que agrupa poucos dados, sobretudo considerando que há apenas 600 espécies no dataset.
 
-### Distribuição de Preços e Marcas com Cluster
+### Scatterplot Preço x Tempo de Vida Média x Cluster
 
-![Cluster x Brand](./dataviz/price-cluster-brand-scatter.png)
+![Price_x_Average_Lifetime_x_Cluster](./dataviz/mass-lifetime-cluster-scatter.png)
 
-Muitos clusters tem uma variação de preço baixa. Contudo alguns clusters, como o Cluster 0, têm uma variação de preço muito grande. Além disso, vê-se que marcas diferentes se encontram dentro de alguns clusters.
-
-Além disso, os clisters não aparentam ser determinados pelo preço. A título de exemplo, os 4 últimos clusters tem uma distribuição de preços parecida.
+É possível ver que o cluster não consegue expressar algo nesse scatterplot.
 
 ## Conclusão
 
-- O Sillhouete Score do melhor modelo foi baixo. Logo o agrupamento não é nem considerado razoável.
-- Talvez com a redução de dimensionalidade o modelo pudesse ser mais efetivo em agrupar as características. Ex: na prática, clientes não necessariamente precisam comprar modelos de computadores que sejam iguais em 17 variáveis. A semelhança pode ocorrer por características mais adequadas, como tamanho da tela, preço, marca e processador e memória. Ex: ser touch-screen não é um fator tão necessário para clusterizar computadores numa loja, já que celulares são os aparelhos mais comprados por serem touch-screen, e não computadores.
+- O Silhouette Score do melhor modelo foi baixo. Logo o agrupamento não é nem considerado razoável. Talvez com uma seleção de features mais adequadas, seja possível clusterizar melhor os dados, visto que o mal da dimensionalidade afasta ainda mais os dados.
+- O melhor modelo tem muitos clusters, o que mostra que o agrupamento não é bom, já que bons agrupamentos incluem muitos dados em poucos clusters idealmente.
 
 ## Créditos
 
-Pedro Sodré, 5 de Julho de 2026.
+Pedro Sodré, 6 de Julho de 2026.
