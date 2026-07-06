@@ -1,4 +1,4 @@
-# Clusterização Hierárquica - Grupox Taxonômicos
+# Clusterização Hierárquica - Grupos Taxonômicos
 
 ## Resumo
 
