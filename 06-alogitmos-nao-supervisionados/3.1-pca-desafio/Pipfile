@@ -4,6 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pandas = "*"
+seaborn = "*"
+matplotlib = "*"
+optuna = "*"
+scikit-learn = "*"
+plotly = "*"
+ipykernel = "*"
+ipywidgets = "*"
+nbformat = "*"
+ipython = "*"
 
 [dev-packages]
 

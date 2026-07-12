@@ -23,20 +23,25 @@ PCA para reduzir a dimensionalidade dos dados, buscando manter o máximo de info
 
 ## Análise de Dados
 
-### Distribuição Categoria de Renda Média
-![Income_Category_Distribution](dataviz/income-category-distribution.png)
+### Distribuição Preço
+![Price_Distribution](dataviz/price-histogram.png)
 
-A distrbuição não é uniforme, mas há uma presença maior da classificação High Income. Isso se dá em razão de haver muitos países com pib médio, mas terem pouca gente.
+A distribuição é uniforme com cauda à direita, logo os dados estão concentrados em valores mais baixos.
 
-### Expectativa de Vida - Boxplot
-![Life_Expectancy_Boxplot](dataviz/life-expectancy-boxplot.png)
+### Distribuição Área
+![Area_Distribution](dataviz/area-histogram.png)
 
-Vê-se que quanto maior a categoria do income, maiorr a expectativa de vida.
+A área (medida em pés quadrados) segue uma distribuição grosseiramente normal com cauda à direita, logo os valores também estão concentrados em valores mais baixos.
 
-### Income x GDPP
-![Income_x_GDPP_Scatter](dataviz/gdpp-x-income-scatterplot.png)
+### Distribuição Status de Mobília
+![Status_Proportion](dataviz/furnishing-status-proportion.png)
 
-Vê-se uma relação não linear de crescimento entre GDPP e Renda Média por Habitante. Quanto maior o PIB, maior a Renda Média por Habitante.
+A maioria dos imóveis são semi mobiliados.
+
+### Distribuição Número de Quartos
+![Number_Bedrooms_Proportion](dataviz/number-of-bedrooms-proportion.png)
+
+Mais da metade das casas apresentam 3 quartos. A distribuição é normal.
 
 ### Correlações
 #### Correlação de Pearson
@@ -45,19 +50,23 @@ Vê-se uma relação não linear de crescimento entre GDPP e Renda Média por Ha
 #### Corelação de Spearman
 ![Spearman_Correlation](dataviz/spearman-correlation.png)
 
-Como algumas correlações são mais próximas de lineares, e outras mais próximas de não lineares, cada forma de correlação explica de forma mais forte cada correlação entre as variáveiis.
+Não há uma correlação forte(> 0.7) entre as features. Isto é um indício que o PCA não será bom para reduzir a dimensionalidade desse problema.
 
-Contudo, chama atenção que muitas variáveis têm correlações entre si.
+## PCA - 2 Dimensões
+![pca-2d](dataviz/2d-pca.png)
 
-Exemplos:
-1. Mortalidade Infantil x Expectativa de Vida
-2. Mortalidade Infantil x PIB
-3. Mortalidade Infantil x Total de crianças que poderiam ter nascido pra cada mulher
-4. Exports x Imports
-5. Income x GDPP
+## PCA - 3 Dimensões
+![pca-3d](dataviz/3d-pca.png)
 
-## Erro de Reconstrução
-|Componentes|Mean Absolute Error|
-|:-:|:-:|
-|2|0.3662302934326459|
-|3|0.23847219349860976|
+## Métricas do PCA
+|Componentes|Mean Square Absolute Error|R²-Score|Variância Explicada|
+|:-:|:-:|:-:|:-:|
+|2|0.3662302934326459|0.3174|0.3662|
+|3|0.23847219349860976|0.40278|0.4673|
+
+## Conclusão
+1. A Variância Explicada pela redução de dimensionalidade está baixa para 2 e 3 componentes. Isto é evidenciado tanto pelo r²-score, que está distante de 1, e pela soma das taxas de variação, que estão longes de 1 também.
+2. O erro ao quadrado absoluto médio está baixo, mas isso pode ser um reflexo da padronização causada pelos transformers.
+3. Os gráficos mostram dados dispersos, sem formar um padrão linear ou uma divisão de por clusters, o que mostra a falha da aplicação do modelo.
+
+Talvez mais componentes seriam necessários para explicar o dataset.
