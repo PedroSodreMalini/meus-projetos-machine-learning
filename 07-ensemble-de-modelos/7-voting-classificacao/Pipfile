@@ -11,6 +11,9 @@ matplotlib = "*"
 scikit-learn = "*"
 optuna = "*"
 scipy = "*"
+ipykernel = "*"
+ipywidgets = "*"
+nbformat = "*"
 
 [dev-packages]
 
