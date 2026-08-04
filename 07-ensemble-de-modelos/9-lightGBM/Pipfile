@@ -17,6 +17,7 @@ ipywidgets = "*"
 nbformat = "*"
 lightgbm = "*"
 bayesian-optimization = "*"
+graphviz = "*"
 
 [dev-packages]
 
