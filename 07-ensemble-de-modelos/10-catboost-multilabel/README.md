@@ -16,7 +16,7 @@ Modelo de classificação multi label de empresas quanto à risco de crédito, d
 |Tempo_Operacao|int|Anos de idade da empresa|
 |Auditoria_Externa|int|Se já passou ou não por auditoria externa|
 |Rating_Credito|float|Taxa de crédito|
-|Tipo_Empresa|str|MEI, limitada, multinacional, etc|
+|Tipo_Empresa|str|MEI, Limitada, Multinacional ou S.A|
 |Politica_Sustentabilidade|str|Política de sustentabilidade Alta, Média ou Baixa|
 |Estrategia_Expansao|str|Estratégia de expansão orgânica, por parceria ou por aquisições|
 |Gestao_Risco|str|Gestão de risco centralizada ou descentralizada|
